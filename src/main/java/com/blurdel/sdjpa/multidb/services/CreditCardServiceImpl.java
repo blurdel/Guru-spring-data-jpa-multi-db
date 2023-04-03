@@ -20,11 +20,18 @@ public class CreditCardServiceImpl implements CreditCardService {
 	private final CreditCardPANRepository creditCardPANRepo;
 
 
+	@Transactional
 	@Override
 	public CreditCard getCreditCardById(Long id) {
-		// TODO Auto-generated method stub
+		CreditCard cc = creditCardRepo.findById(id).orElseThrow();
+		CreditCardHolder cch = creditCardHolderRepo.findByCreditCardId(id).orElseThrow();
+		CreditCardPAN ccp = creditCardPANRepo.findByCreditCardId(id).orElseThrow();
 
-		return null;
+		cc.setFirstName(cch.getFirstName());
+		cc.setLastName(cch.getLastName());
+		cc.setZipCode(cch.getZipCode());
+		cc.setCreditCardNumber(ccp.getCreditCardNumber());
+		return cc;
 	}
 
 	@Transactional

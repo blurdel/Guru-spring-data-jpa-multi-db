@@ -31,6 +31,13 @@ class GuruSpringDataJpaMultiDbApplicationTests {
 		assertThat(saved).isNotNull();
 		assertThat(saved.getId()).isNotNull();
 		assertThat(saved.getCreditCardNumber()).isNotNull();
+
+
+		CreditCard fetched = creditCardService.getCreditCardById(saved.getId());
+
+		assertThat(fetched).isNotNull();
+		assertThat(fetched.getId()).isNotNull();
+		assertThat(fetched.getCreditCardNumber()).isNotNull();
 	}
 
 	@Test
