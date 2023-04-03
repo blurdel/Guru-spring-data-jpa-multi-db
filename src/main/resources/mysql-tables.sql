@@ -17,6 +17,7 @@ CREATE TABLE credit_card_holder (
     first_name varchar(30),
     last_name varchar(30),
     zip_code varchar(10),
+    credit_card_id bigint,
     PRIMARY KEY (id)
 );
 
@@ -26,5 +27,6 @@ DROP TABLE IF EXISTS credit_card_pan;
 CREATE TABLE credit_card_pan (
     id bigint not null auto_increment,
     credit_card_number varchar(30),
+    credit_card_id bigint,
     PRIMARY KEY (id)
 );
